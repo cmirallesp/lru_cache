@@ -1,13 +1,13 @@
 # Cache
 
-This project implements in elixir a Cache with capacity N that replaces the least recently element when such capacity is reached.
+This project implements in elixir a Cache with capacity N that replaces the least recently used element when such capacity is reached.
 
 ## API
 Has three public operations: 
 
 - create: creates the cache 
 - get: obtains an element from the cache 
-- set: saves an element into the cache 
+- put: puts an element into the cache 
 
 More info in module [documentation](doc/Cache.html#functions)
 

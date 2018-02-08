@@ -10,7 +10,7 @@ defmodule Cache do
   @opaque tcache :: map
 
 
-### cache API: new, set, get
+### cache API: new, put, get
 
   @doc """
   Creates a cache to allocate __capacity__ values
@@ -42,11 +42,11 @@ defmodule Cache do
     - value: content being cached
 
   ## Examples  
-      iex> Cache.create(10) |> Cache.set(:a,"a")
+      iex> Cache.create(10) |> Cache.put(:a,"a")
       %{data: %{a: %{val: "a", seq: 1}}, cap: 9, seq: 1}
   """
-  @spec set(tcache,any, any) :: tcache
-  def set(self,key,content) do
+  @spec put(tcache,any, any) :: tcache
+  def put(self,key,content) do
     cache = next_seq(self)
     entry = %{val: content, seq: cache.seq}
     {new_data, dec} =
@@ -75,7 +75,7 @@ defmodule Cache do
       iex> Cache.create(10) |> Cache.get(:a)
       {nil,  %{cap: 10, data: %{}, seq: 0}}
 
-      iex> Cache.create(10) |> Cache.set(:a,"a") |> Cache.get(:a)
+      iex> Cache.create(10) |> Cache.put(:a,"a") |> Cache.get(:a)
       { %{val: "a", seq: 2}, %{data: %{a: %{val: "a", seq: 2}}, seq: 2, cap: 9} }
     
   """
